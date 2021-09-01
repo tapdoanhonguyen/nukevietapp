@@ -71,7 +71,7 @@ class _LoginPage extends State<LoginPage> {
     Toast.showLoading();
     await Future.delayed(Duration(seconds: 1));
     Toast.dismiss();
-    return [ServerInfo.vaccom];
+    return [ServerInfo.nukeviet];
   }
 
   void selectServerInfo() async {
