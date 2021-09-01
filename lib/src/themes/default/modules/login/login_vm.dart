@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nukeviet/src/include/base.dart';
 import 'package:nukeviet/src/vendor/network/response/mapping/user.dart';
-import 'package:nukeviet/src/vendor/network/response/mapping/vac_token.dart';
+import 'package:nukeviet/src/vendor/network/response/mapping/nv_token.dart';
 
 class LoginViewModel extends BaseViewModel {
   final usernameCtrl = TextEditingController();
@@ -18,7 +18,7 @@ class LoginViewModel extends BaseViewModel {
     passwordCtrl.text = r'';
   }
 
-  Future<VacToken> login() async {
+  Future<NVToken> login() async {
     return api.securityToken(username: username, password: password);
   }
 

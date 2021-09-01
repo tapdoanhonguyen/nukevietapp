@@ -1,6 +1,6 @@
 part of api;
 
-
+enum HTTPMethod { post, put, delete }
 
 extension ApiMethod on API {
   static Future<bool> hasNetwork() async {
@@ -31,7 +31,7 @@ extension ApiMethod on API {
     logger.info('--[${api.name}] GET ${api.path} - params: $params');
 
     var accessToken = await Utils.getAppToken();
-
+    //String params ='';
     Map<String, String> headers = {};
     if (accessToken.isNotEmpty) {
       headers[HttpHeaders.authorizationHeader] = 'Bearer $accessToken';
@@ -45,7 +45,7 @@ extension ApiMethod on API {
 
     try {
       var response = await http.get(Uri.parse(endpoint), headers: headers);
-      var jsonData = _processResponse(response);
+      var jsonData = processResponse(response);
       return jsonData;
     } catch (e) {
       throw e;
@@ -53,8 +53,11 @@ extension ApiMethod on API {
   }
 
   /// POST
-  static Future<dynamic> postData(
-      ApiPath api, Map<String, dynamic> params) async {
+  static Future<dynamic> responseJSON(
+      ApiPath api,
+      Map<String, dynamic> params, {
+        HTTPMethod method = HTTPMethod.post,
+      }) async {
     final isOnline = await hasNetwork();
     if (isOnline == false) {
       throw NetworkException();
@@ -72,12 +75,30 @@ extension ApiMethod on API {
     final uri = Uri.https(Global.shared.authority, api.path);
 
     try {
-      var response = await http.post(
-        uri,
-        body: params,
-        headers: headers,
-      );
-      var jsonData = _processResponse(response);
+      http.Response response;
+      switch (method) {
+        case HTTPMethod.post:
+          response = await http.post(
+            uri,
+            body: params,
+            headers: headers,
+          );
+          break;
+        case HTTPMethod.put:
+          response = await http.put(
+            uri,
+            body: params,
+            headers: headers,
+          );
+          break;
+        case HTTPMethod.delete:
+          response = await http.delete(
+            uri,
+            headers: headers,
+          );
+          break;
+      }
+      var jsonData = processResponse(response);
       return jsonData;
     } catch (e) {
       throw e;
@@ -93,17 +114,20 @@ extension ApiMethod on API {
 
     String basicAuth =
         'Basic ' + base64Encode(utf8.encode('$username:$password'));
-    logger.info(Uri.parse(Global.shared.endpoint(ApiPath.login.path)));
+    logger.info(basicAuth);
 
     try {
       logger.info(Uri.parse(Global.shared.endpoint(ApiPath.login.path)));
+      int timestamp = 0;
+      Global.shared.setDataPost(timestamp, 'users', 'Login');
+      logger.info(Global.shared.datapost);
       var response = await http.post(
         Uri.parse(Global.shared.endpoint(ApiPath.login.path)),
-        headers: {'authorization': basicAuth},
+        headers: { timestamp.toString() : basicAuth},
         body: Global.shared.datapost
       );
 
-      var responseJson = _processResponse(response);
+      var responseJson = processResponse(response);
       logger.info(responseJson);
       return responseJson;
     } catch (e) {
@@ -111,16 +135,76 @@ extension ApiMethod on API {
     }
   }
 
+  /// Renew TOKEN
+  static Future<void> renewToken() async {
+    final loginParam = await Utils.getLoginParam();
+
+    String basicAuth = 'Basic ' + base64Encode(utf8.encode(loginParam));
+    logger.info(basicAuth);
+
+    try {
+      logger.info(Uri.parse(Global.shared.endpoint(ApiPath.login.path)));
+      var response = await http.post(
+        Uri.parse(Global.shared.endpoint(ApiPath.login.path)),
+        headers: {'authorization': basicAuth},
+      );
+
+      var utf8Decode = utf8.decode(response.bodyBytes);
+      var responseJson = json.decode(utf8Decode);
+      final token = NVToken.fromJson(responseJson);
+      Utils.saveToken(token);
+    } catch (e) {
+      throw e;
+    }
+  }
+
   ///
-  static dynamic _processResponse(http.Response response) {
+  static dynamic processResponse(http.Response response) {
     switch (response.statusCode) {
       case 200:
-        var responseJson = json.decode(response.body);
+        var utf8Decode = utf8.decode(response.bodyBytes);
+        var responseJson = json.decode(utf8Decode);
         logger.info(responseJson);
         return responseJson;
         break;
+
+      case 401:
+        renewToken();
+        break;
+
       default:
         throw FetchDataException('Lỗi kết nối: ${response.statusCode}');
+    }
+  }
+}
+
+extension VacNetwork on API {
+  /// GET
+  static Future<dynamic> getData({String uri}) async {
+    final isOnline = await ApiMethod.hasNetwork();
+    if (isOnline == false) {
+      throw NetworkException();
+    }
+
+    logger.info('--uri: $uri');
+    HttpClient client = HttpClient()
+      ..badCertificateCallback =
+      ((X509Certificate cert, String host, int port) => true);
+
+    try {
+      final request = await client.getUrl(Uri.parse(uri));
+      final response = await request.close();
+
+      String reply = await response.transform(utf8.decoder).join();
+
+      if (response.statusCode != 200) {
+        throw FetchDataException('Lỗi kết nối: ${response.statusCode}');
+      }
+
+      return json.decode(reply);
+    } catch (e) {
+      logger.info(e.toString());
+      throw FetchDataException('Lỗi kết nối');
     }
   }
 }

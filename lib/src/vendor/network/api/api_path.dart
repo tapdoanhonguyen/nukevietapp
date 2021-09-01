@@ -7,7 +7,7 @@ class ApiPath {
 
   static ApiPath login = ApiPath(
     name: 'Login',
-    path: 'security/login',
+    path: '',
   );
 
   static ApiPath getUser(int id) => ApiPath(

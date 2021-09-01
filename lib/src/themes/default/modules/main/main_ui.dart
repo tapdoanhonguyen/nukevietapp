@@ -118,7 +118,7 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              '${user.hoVaTen}',
+                              '${user.first_name}',
                               style: GoogleFonts.merriweather(
                                 color: Colors.white,
                                 fontSize: 16,
@@ -177,7 +177,6 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
         drawer: drawerWidget,
         appBar: Utils.gradientAppBar(
           child: AppBar(
-            brightness: Brightness.dark,
             backgroundColor: Colors.transparent,
             title: Text(
               r'Dashboard',

@@ -8,9 +8,8 @@ import 'package:nukeviet/src/vendor/commons/utils.dart';
 import 'package:nukeviet/src/vendor/network/exception.dart';
 import 'package:nukeviet/src/vendor/network/global.dart';
 import 'package:nukeviet/src/vendor/network/response/mapping/newsrow.dart';
-import 'package:nukeviet/src/vendor/network/response/mapping/nguoitiemchung.dart';
 import 'package:nukeviet/src/vendor/network/response/mapping/user.dart';
-import 'package:nukeviet/src/vendor/network/response/mapping/vac_token.dart';
+import 'package:nukeviet/src/vendor/network/response/mapping/nv_token.dart';
 
 
 export 'mock_api.dart';
@@ -26,7 +25,7 @@ enum ApiType { mock, remote }
 abstract class API {
   ApiType apiType;
 
-  Future<VacToken> securityToken({String username, String password});
+  Future<NVToken> securityToken({String username, String password});
 
   Future<User> getUser({int userId});
 

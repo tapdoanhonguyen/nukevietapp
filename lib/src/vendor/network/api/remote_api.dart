@@ -2,9 +2,8 @@
 
 
 import 'package:nukeviet/src/vendor/network/response/mapping/newsrow.dart';
-import 'package:nukeviet/src/vendor/network/response/mapping/nguoitiemchung.dart';
 import 'package:nukeviet/src/vendor/network/response/mapping/user.dart';
-import 'package:nukeviet/src/vendor/network/response/mapping/vac_token.dart';
+import 'package:nukeviet/src/vendor/network/response/mapping/nv_token.dart';
 
 import 'api.dart';
 class RemoteAPI implements API {
@@ -15,13 +14,13 @@ class RemoteAPI implements API {
   @override
   ApiType apiType = ApiType.remote;
 
-  Future<VacToken> securityToken({String username, String password}) async {
+  Future<NVToken> securityToken({String username, String password}) async {
     try {
       var res = await ApiMethod.getToken(
         username: username,
         password: password,
       );
-      return VacToken.fromJson(res);
+      return NVToken.fromJson(res);
     } catch (e) {
       throw e;
     }

@@ -49,6 +49,7 @@ class _LoginPage extends State<LoginPage> {
     Toast.showLoading();
 
     viewModel.login().then((value) {
+      logger.info(value);
       Utils.saveToken(value);
       getUser(value.userId);
     }).catchError(
@@ -114,12 +115,12 @@ class _LoginPage extends State<LoginPage> {
 
     if (server != null && server.title != serverInfo.title) {
       setState(() => serverInfo = server);
-      int timestamp =  DateTime.now().millisecondsSinceEpoch;
+      int timestamp = 0;
       Global.shared.setServer(server);
       Global.shared.server.module = 'users';
       Global.shared.server.action = 'Login';
       Global.shared.lang = 'vi';
-      Global.shared.datapost = Global.shared.setDataPost(timestamp,'users','Login');
+      Global.shared.setDataPost(timestamp,'users','Login');
     }
   }
 
@@ -229,43 +230,6 @@ class _LoginPage extends State<LoginPage> {
         )
       ],
     );
-
-    Widget serverInfoWidget() {
-      return Container(
-        margin: EdgeInsets.only(
-          left: padding,
-          right: padding,
-        ),
-        child: GestureDetector(
-          onTap: selectServerInfo,
-          child: Card(
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(10, 8, 8, 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Expanded(
-                    child: Text(
-                      serverInfo.title ?? r'- Chọn máy chủ -',
-                      style: GoogleFonts.roboto(
-                        color: AppColor.main,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      overflow: TextOverflow.fade,
-                    ),
-                  ),
-                  Icon(
-                    Icons.arrow_drop_down,
-                    color: AppColor.main,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      );
-    }
 
     return Scaffold(
       resizeToAvoidBottomInset: false,

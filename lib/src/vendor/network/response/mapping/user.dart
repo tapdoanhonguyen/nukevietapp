@@ -2,43 +2,36 @@ class User {
   User({
     this.id,
     this.tenDangNhap,
-    this.hoVaTen,
-    this.chucDanh,
-    this.soDienThoai,
+    this.first_name,
+    this.gender,
+    this.photo,
     this.email,
-    this.matKhau,
-    this.diaBanCoSoId,
-    this.coSoYTeId,
-    this.nguoiTiemChungId,
-    this.quanTriHeThong,
-    this.khoaTaiKhoan,
+    this.birthday,
+    this.last_name,
+    this.active
   });
 
   int id;
   String tenDangNhap;
-  String hoVaTen;
-  String chucDanh;
-  String soDienThoai;
+  String first_name;
+  String gender;
+  String photo;
   String email;
-  String matKhau;
-  int diaBanCoSoId;
-  int coSoYTeId;
-  int nguoiTiemChungId;
-  bool quanTriHeThong;
-  bool khoaTaiKhoan;
+  String birthday;
+  String last_name;
+  int active;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-    id: json["id"],
-    tenDangNhap: json["tenDangNhap"],
-    hoVaTen: json["hoVaTen"],
-    chucDanh: json["chucDanh"],
-    soDienThoai: json["soDienThoai"],
-    email: json["email"],
-    matKhau: json["matKhau"],
-    diaBanCoSoId: json["diaBanCoSoId"],
-    coSoYTeId: json["coSoYTeId"],
-    nguoiTiemChungId: json["nguoiTiemChungId"],
-    quanTriHeThong: json["quanTriHeThong"],
-    khoaTaiKhoan: json["khoaTaiKhoan"],
+    id: json["message"]["userid"],
+    tenDangNhap: json["message"]["username"],
+    first_name: json["message"]["first_name"],
+    gender: json["message"]["gender"],
+    photo: json["message"]["photo"],
+    email: json["message"]["email"],
+    birthday: json["message"]["birthday"],
+    active: json["message"]["active"],
+    last_name: json["message"]["last_name"]
   );
+
+  Map<String, dynamic> params() => {};
 }

@@ -22,7 +22,6 @@ class BaseScaffoldWidget extends StatelessWidget {
       appBar: Utils.gradientAppBar(
         child: AppBar(
           backgroundColor: Colors.transparent,
-          brightness: Brightness.dark,
           title: Text(
             '${title ?? ''}',
             style: AppStyle.appBarTitle,

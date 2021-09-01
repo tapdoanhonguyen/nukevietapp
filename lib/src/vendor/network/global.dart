@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:nukeviet/src/modules/server_info.dart';
 import 'package:password_hash/pbkdf2.dart';
 import 'package:rxdart/rxdart.dart';
@@ -25,18 +27,25 @@ class Global {
   }
   setDataPost(int timestamp, String module, String action){
     var generator = new PBKDF2();
-    var hashsecret = generator.generateKey(server.apisec + '_' + timestamp.toString(), Global.shared.passDefault,1000,32);
-    Global.shared.datapost = 'apikey=' + server.apikey + '&timestamp=' + timestamp.toString() + '&hashsecret=' + hashsecret.toString() + '&lang='
-        + Global.shared.lang + '&module=' + module + '&action=' + action;
+    var hashsecret = generator.generateKey(server.apisec + '_' + timestamp.toString(), Global.shared.passDefault,0,0);
+    //Global.shared.datapost = jsonEncode({'apikey' : server.apikey});
+    Global.shared.datapost = {
+      'apikey' : server.apikey,
+      'timestamp' :  timestamp.toString(),
+      'hashsecret' :  hashsecret.toString(),
+      'lang' : Global.shared.lang,
+      'module' : module,
+      'action' : action
+    };
   }
   String endpoint(String path) {
-    return _schema + '://' + _baseUrl + (path.startsWith('/') ? path : ('/$path'));
+    return _schema + '://' + _baseUrl + (path.startsWith('') ? path : ('/$path'));
   }
 
   String deviceToken = '';
   String passDefault = '';
-  String lang = '';
-  String datapost = '';
+  String lang = 'vi';
+  Map<String,dynamic> datapost ;
 
   final appUser = BehaviorSubject<User>();
   User get currentUser => appUser.value;

@@ -1,10 +1,9 @@
 import 'dart:convert';
 
 import 'package:nukeviet/src/vendor/network/mock/mock.dart';
-import 'package:nukeviet/src/vendor/network/response/mapping/nguoitiemchung.dart';
 import 'package:nukeviet/src/vendor/network/response/mapping/newsrow.dart';
 import 'package:nukeviet/src/vendor/network/response/mapping/user.dart';
-import 'package:nukeviet/src/vendor/network/response/mapping/vac_token.dart';
+import 'package:nukeviet/src/vendor/network/response/mapping/nv_token.dart';
 
 
 
@@ -18,9 +17,9 @@ class MockAPI implements API {
   @override
   ApiType apiType = ApiType.mock;
 
-  Future<VacToken> securityToken({String username, String password}) async {
+  Future<NVToken> securityToken({String username, String password}) async {
     var data = json.decode(mockToken);
-    return VacToken.fromJson(data);
+    return NVToken.fromJson(data);
   }
 
   Future<User> getUser({int userId}) async {
@@ -28,13 +27,7 @@ class MockAPI implements API {
     return User.fromJson(data);
   }
 
-  Future<InjectorPaging> getListNguoiTiemChung({
-    Map<String, dynamic> params,
-  }) async {
-    await Future.delayed(Duration(seconds: 1));
-    var data = json.decode(mockNguoiTiemChung);
-    return InjectorPaging.fromJson(data);
-  }
+
   Future<NewListPaging> getListNewsRow({
     Map<String, dynamic> params,
   }) async {

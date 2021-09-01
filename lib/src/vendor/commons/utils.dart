@@ -7,7 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:nukeviet/src/include/constants.dart';
 import 'package:nukeviet/src/include/router.dart';
 import 'package:nukeviet/src/vendor/components/gradient_view.dart';
-import 'package:nukeviet/src/vendor/network/response/mapping/vac_token.dart';
+import 'package:nukeviet/src/vendor/network/response/mapping/nv_token.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_logger/simple_logger.dart';
 
@@ -49,7 +49,7 @@ class Utils {
     return prefs.getInt(AppConstant.userId);
   }
 
-  static Future<void> saveToken(VacToken token) async {
+  static Future<void> saveToken(NVToken token) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(AppConstant.accessToken, token.accessToken);
     prefs.setInt(AppConstant.userId, token.userId);
