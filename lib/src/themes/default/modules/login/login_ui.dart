@@ -30,7 +30,7 @@ class _LoginPage extends State<LoginPage> {
   final FocusNode _focusNode = FocusNode();
 
   ServerInfo serverInfo = ServerInfo.nukeviet;
-  final vaccomBanner = Image.asset('assets/images/logo_banner.png');
+  final NukeVietBanner = Image.asset('assets/images/logo_banner.png');
 
   @override
   void dispose() {
@@ -210,7 +210,7 @@ class _LoginPage extends State<LoginPage> {
                 ),
                 child: CachedNetworkImage(
                   imageUrl: serverInfo.logoBanner,
-                  errorWidget: (_, e, o) => vaccomBanner,
+                  errorWidget: (_, e, o) => NukeVietBanner,
                 ),
               ),
               Container(
