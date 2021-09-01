@@ -15,13 +15,7 @@ class InjectorViewModel extends BaseViewModel {
   List<NguoiTiemChung> get injectors => _injectors.value.data;
 
   void getInjectors({SearchQuery param}) {
-    api
-        .getListNguoiTiemChung(params: param.toJson())
-        .then((value) => injectorsChanged(value))
-        .catchError((e) {
-      logger.info(e.toString());
-      injectorsChanged(null);
-    });
+
   }
 
   @override

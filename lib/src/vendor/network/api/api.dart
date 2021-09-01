@@ -20,9 +20,6 @@ part 'api_method.dart';
 
 part 'api_path.dart';
 
-enum ApiType { mock, remote }
-
-
 
 enum ApiType { mock, remote }
 
