@@ -3,32 +3,32 @@ import 'package:flutter/material.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:nukeviet/src/modules/search_query.dart';
 import 'package:nukeviet/src/themes/default/color.dart';
-import 'package:nukeviet/src/themes/default/modules/injector/injector_cell.dart';
-import 'package:nukeviet/src/themes/default/modules/injector/injector_vm.dart';
 import 'package:nukeviet/src/vendor/commons/toast.dart';
 import 'package:nukeviet/src/vendor/commons/utils.dart';
 import 'package:nukeviet/src/vendor/components/base_scaffold.dart';
 import 'package:nukeviet/src/vendor/components/paging_footer.dart';
-import 'package:nukeviet/src/vendor/network/response/mapping/nguoitiemchung.dart';
+import 'package:nukeviet/src/vendor/network/response/mapping/newsrow.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:nukeviet/src/themes/default/modules/news/newslist_vm.dart';
+import 'package:nukeviet/src/themes/default/modules/news/newslist_cell.dart';
 
 /// Danh sách người tiêm chủng
-class InjectorPage extends StatefulWidget {
-  const InjectorPage();
+class NewListPage extends StatefulWidget {
+  const NewListPage();
 
   @override
-  _InjectorPageState createState() => _InjectorPageState();
+  _NewListPageState createState() => _NewListPageState();
 }
 
-class _InjectorPageState extends State<InjectorPage>
+class _NewListPageState extends State<NewListPage>
     with TickerProviderStateMixin {
   AnimationController animationController;
   ScrollController _scrollController = new ScrollController();
 
-  List<NguoiTiemChung> dataArray = [];
+  List<NewsRow> dataArray = [];
   final _refreshCtrl = RefreshController(initialRefresh: false);
 
-  final viewModel = InjectorViewModel();
+  final viewModel = NewListViewModel();
   var searchQuery = SearchQuery();
   bool isFirstLoading = true;
   bool _isPageLoading = false;
@@ -42,7 +42,7 @@ class _InjectorPageState extends State<InjectorPage>
         AnimationController(duration: Duration(milliseconds: 300), vsync: this);
     super.initState();
 
-    viewModel.injectorsStream.listen((list) {
+    viewModel.newslistStream.listen((list) {
       if (list != null && list.data.isNotEmpty) {
         setState(() {
           dataArray = list.data;
@@ -67,11 +67,11 @@ class _InjectorPageState extends State<InjectorPage>
 
   void getData() async {
     await Future.delayed(Duration(milliseconds: 300));
-    viewModel.getInjectors(param: searchQuery);
+    viewModel.getNewsList(param: searchQuery);
   }
 
   void reloadStock({bool pageLoading = true}) async {
-    viewModel.getInjectors(param: searchQuery);
+    viewModel.getNewsList(param: searchQuery);
     if (pageLoading) {
       setPageLoading();
     }
@@ -114,35 +114,35 @@ class _InjectorPageState extends State<InjectorPage>
                   onRefresh: _refresh,
                   child: dataArray.length > 0
                       ? ListView.builder(
-                          itemCount: dataArray.length,
-                          padding: EdgeInsets.symmetric(vertical: 8),
-                          scrollDirection: Axis.vertical,
-                          itemBuilder: (context, index) {
-                            var count = dataArray.length;
-                            var animation = Tween(begin: 0.2, end: 1.0).animate(
-                              CurvedAnimation(
-                                parent: animationController,
-                                curve: Interval((1 / count) * index, 1.0,
-                                    curve: Curves.fastOutSlowIn),
-                              ),
-                            );
-                            animationController.forward();
-                            final item = dataArray[index];
-                            return InjectorCell(
-                              item: item,
-                              animation: animation,
-                              animationController: animationController,
-                              onTap: (item) {
-                                Toast.show(text: item.hoVaTen);
-                              },
-                              action: (ac, item) {
-                                Toast.show(
-                                  text: ac.toString() + ' - ' + item.hoVaTen,
-                                );
-                              },
-                            );
-                          },
-                        )
+                    itemCount: dataArray.length,
+                    padding: EdgeInsets.symmetric(vertical: 8),
+                    scrollDirection: Axis.vertical,
+                    itemBuilder: (context, index) {
+                      var count = dataArray.length;
+                      var animation = Tween(begin: 0.2, end: 1.0).animate(
+                        CurvedAnimation(
+                          parent: animationController,
+                          curve: Interval((1 / count) * index, 1.0,
+                              curve: Curves.fastOutSlowIn),
+                        ),
+                      );
+                      animationController.forward();
+                      final item = dataArray[index];
+                      return NewListCell(
+                        item: item,
+                        animation: animation,
+                        animationController: animationController,
+                        onTap: (item) {
+                          Toast.show(text: item.hoVaTen);
+                        },
+                        action: (ac, item) {
+                          Toast.show(
+                            text: ac.toString() + ' - ' + item.hoVaTen,
+                          );
+                        },
+                      );
+                    },
+                  )
                       : Utils.emptyDataWidget(),
                 ),
               ),

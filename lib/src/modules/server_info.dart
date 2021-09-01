@@ -8,9 +8,9 @@ class ServerInfo {
     this.logoBanner,
   });
 
-  static ServerInfo vaccom = ServerInfo(
-      title: r'thanhban.vaccom.vn',
-      desc: r'HỆ THỐNG QUẢN LÝ VÀ TỔ CHỨC ĐIỂM TIÊM CHỦNG',
-      baseUrl: r'thachban.vaccom.vn:8080/rest/v1/',
-      logoBanner: r'https://thachban.vaccom.vn/images/logo_banner.png');
+  static ServerInfo nukeviet = ServerInfo(
+      title: r'nukeviet.vn',
+      desc: r'CMS Nukeviet',
+      baseUrl: r'https://nukeviet.vn/api.php',
+      logoBanner: r'https://nukeviet.vn/uploads/logo.png');
 }

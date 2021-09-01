@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:nukeviet/src/vendor/commons/utils.dart';
 import 'package:nukeviet/src/vendor/network/exception.dart';
 import 'package:nukeviet/src/vendor/network/global.dart';
+import 'package:nukeviet/src/vendor/network/response/mapping/newsrow.dart';
 import 'package:nukeviet/src/vendor/network/response/mapping/nguoitiemchung.dart';
 import 'package:nukeviet/src/vendor/network/response/mapping/user.dart';
 import 'package:nukeviet/src/vendor/network/response/mapping/vac_token.dart';
@@ -29,6 +30,9 @@ abstract class API {
   Future<User> getUser({int userId});
 
   Future<InjectorPaging> getListNguoiTiemChung({
+    Map<String, dynamic> params,
+  });
+  Future<NewListPaging> getListNewsRow({
     Map<String, dynamic> params,
   });
 }

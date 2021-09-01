@@ -19,4 +19,8 @@ class ApiPath {
     name: r'Danh sách người tiêm chủng',
     path: r'app/get/search/nguoitiemchung'
   );
+  static ApiPath getListNewsRow = ApiPath(
+      name: r'Danh sách người tiêm chủng',
+      path: r'app/get/search/nguoitiemchung'
+  );
 }

@@ -1,6 +1,7 @@
 
 
 
+import 'package:nukeviet/src/vendor/network/response/mapping/newsrow.dart';
 import 'package:nukeviet/src/vendor/network/response/mapping/nguoitiemchung.dart';
 import 'package:nukeviet/src/vendor/network/response/mapping/user.dart';
 import 'package:nukeviet/src/vendor/network/response/mapping/vac_token.dart';
@@ -44,6 +45,16 @@ class RemoteAPI implements API {
     try {
       var data = await ApiMethod.getData(ApiPath.getListNguoiTiemChung, params);
       return InjectorPaging.fromJson(data);
+    } catch (e) {
+      throw e;
+    }
+  }
+  Future<NewListPaging> getListNewsRow({
+    Map<String, dynamic> params,
+  }) async {
+    try {
+      var data = await ApiMethod.getData(ApiPath.getListNewsRow, params);
+      return NewListPaging.fromJson(data);
     } catch (e) {
       throw e;
     }

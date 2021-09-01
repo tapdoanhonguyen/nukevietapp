@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nukeviet/src/vendor/components/dash_divider.dart';
-import 'package:nukeviet/src/vendor/network/response/mapping/nguoitiemchung.dart';
-
-
 import 'package:nukeviet/src/themes/default/color.dart';
+import 'package:nukeviet/src/vendor/components/dash_divider.dart';
+import 'package:nukeviet/src/vendor/network/response/mapping/newsrow.dart';
 
 enum IAction { edit, delete, approved }
 
-typedef InjectorAction = Function(IAction, NguoiTiemChung);
+typedef InjectorAction = Function(IAction, NewsRow);
 
-class InjectorCell extends StatelessWidget {
-  final Function(NguoiTiemChung) onTap;
-  final NguoiTiemChung item;
+class NewListCell extends StatelessWidget {
+  final Function(NewsRow) onTap;
+  final NewsRow item;
   final AnimationController animationController;
   final Animation animation;
   final InjectorAction action;
 
-  const InjectorCell({
+  const NewListCell({
     Key key,
     this.item,
     this.animationController,

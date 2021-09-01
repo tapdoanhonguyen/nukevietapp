@@ -14,6 +14,9 @@ class GetRouter {
   static const main = '/main';
   static const injector = '/injector';
   static const newInjector = '/new_injector';
+  static const about = '/new_injector';
+  static const users = '/new_injector';
+  static const contact = '/new_injector';
 
   static List<GetPage> getPages() {
     return [
@@ -22,6 +25,9 @@ class GetRouter {
       GetPage(name: main, page: () => MainPage()),
       GetPage(name: injector, page: () => InjectorPage()),
       GetPage(name: newInjector, page: () => NewInjectorPage()),
+      //GetPage(name: about, page: () => AboutPage()),
+      //GetPage(name: users, page: () => AboutPage()),
+      //GetPage(name: contact, page: () => ContactPage()),
     ];
   }
 }

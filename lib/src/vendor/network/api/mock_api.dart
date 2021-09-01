@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:nukeviet/src/vendor/network/mock/mock.dart';
 import 'package:nukeviet/src/vendor/network/response/mapping/nguoitiemchung.dart';
+import 'package:nukeviet/src/vendor/network/response/mapping/newsrow.dart';
 import 'package:nukeviet/src/vendor/network/response/mapping/user.dart';
 import 'package:nukeviet/src/vendor/network/response/mapping/vac_token.dart';
 
@@ -33,5 +34,12 @@ class MockAPI implements API {
     await Future.delayed(Duration(seconds: 1));
     var data = json.decode(mockNguoiTiemChung);
     return InjectorPaging.fromJson(data);
+  }
+  Future<NewListPaging> getListNewsRow({
+    Map<String, dynamic> params,
+  }) async {
+    await Future.delayed(Duration(seconds: 1));
+    var data = json.decode(mockNewRow);
+    return NewListPaging.fromJson(data);
   }
 }
