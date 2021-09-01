@@ -29,7 +29,7 @@ class _LoginPage extends State<LoginPage> {
 
   final FocusNode _focusNode = FocusNode();
 
-  ServerInfo serverInfo = ServerInfo.vaccom;
+  ServerInfo serverInfo = ServerInfo.nukeviet;
   final vaccomBanner = Image.asset('assets/images/logo_banner.png');
 
   @override
