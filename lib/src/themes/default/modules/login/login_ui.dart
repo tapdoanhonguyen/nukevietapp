@@ -71,7 +71,7 @@ class _LoginPage extends State<LoginPage> {
     Toast.showLoading();
     await Future.delayed(Duration(seconds: 1));
     Toast.dismiss();
-    return [ServerInfo.nukeviet];
+   return [ServerInfo.nukeviet];
   }
 
   void selectServerInfo() async {
@@ -352,17 +352,7 @@ class _LoginPage extends State<LoginPage> {
                   ),
                 ),
               ),
-              Positioned(
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    bottom: 16 + MediaQuery.of(context).padding.bottom,
-                  ),
-                  child: serverInfoWidget(),
-                ),
-                left: 0,
-                right: 0,
-                bottom: 0,
-              ),
+
             ],
           ),
         ),
