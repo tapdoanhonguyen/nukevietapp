@@ -22,6 +22,10 @@ part 'api_path.dart';
 
 enum ApiType { mock, remote }
 
+
+
+enum ApiType { mock, remote }
+
 abstract class API {
   ApiType apiType;
 
@@ -29,9 +33,7 @@ abstract class API {
 
   Future<User> getUser({int userId});
 
-  Future<InjectorPaging> getListNguoiTiemChung({
-    Map<String, dynamic> params,
-  });
+
   Future<NewListPaging> getListNewsRow({
     Map<String, dynamic> params,
   });

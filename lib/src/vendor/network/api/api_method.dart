@@ -100,7 +100,7 @@ extension ApiMethod on API {
       var response = await http.post(
         Uri.parse(Global.shared.endpoint(ApiPath.login.path)),
         headers: {'authorization': basicAuth},
-        
+
       );
 
       var responseJson = _processResponse(response);
