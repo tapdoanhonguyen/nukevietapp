@@ -7,7 +7,6 @@ import 'package:nukeviet/src/vendor/network/response/mapping/user.dart';
 import 'package:nukeviet/src/vendor/network/response/mapping/vac_token.dart';
 
 import 'api.dart';
-
 class RemoteAPI implements API {
   RemoteAPI._();
 
@@ -38,17 +37,6 @@ class RemoteAPI implements API {
       throw e;
     }
   }
-
-  Future<InjectorPaging> getListNguoiTiemChung({
-    Map<String, dynamic> params,
-  }) async {
-    try {
-      var data = await ApiMethod.getData(ApiPath.getListNguoiTiemChung, params);
-      return InjectorPaging.fromJson(data);
-    } catch (e) {
-      throw e;
-    }
-  }
   Future<NewListPaging> getListNewsRow({
     Map<String, dynamic> params,
   }) async {
@@ -59,4 +47,8 @@ class RemoteAPI implements API {
       throw e;
     }
   }
+
 }
+
+
+

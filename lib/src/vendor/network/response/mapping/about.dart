@@ -3,7 +3,7 @@
 import 'package:nukeviet/src/modules/base_item.dart';
 
 class About implements BaseItem {
-  QuocGia({
+  About({
     this.id,
     this.code,
     this.name,
@@ -14,12 +14,12 @@ class About implements BaseItem {
   String code;
   String name;
 
-  factory QuocGia.fromJson(Map<String, dynamic> json) => QuocGia(
+  factory About.fromJson(Map<String, dynamic> json) => About(
     id: json["id"],
     code: json["quocGiaMa"],
     name: json["quocGiaTen"],
   );
 
-  static List<QuocGia> listFromJson(dynamic data) =>
-      List<QuocGia>.from(data.map((x) => QuocGia.fromJson(x)));
+  static List<About> listFromJson(dynamic data) =>
+      List<About>.from(data.map((x) => About.fromJson(x)));
 }
