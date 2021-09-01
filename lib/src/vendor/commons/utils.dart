@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:nukeviet/src/include/constants.dart';
 import 'package:nukeviet/src/include/router.dart';
 import 'package:nukeviet/src/vendor/components/gradient_view.dart';
 import 'package:nukeviet/src/vendor/network/response/mapping/vac_token.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_logger/simple_logger.dart';
-
-import 'constants.dart';
-
 
 /// LOGGER
 final SimpleLogger logger = SimpleLogger()
@@ -35,6 +34,8 @@ class Utils {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.remove(AppConstant.accessToken);
     prefs.remove(AppConstant.userId);
+    prefs.remove(AppConstant.username);
+    prefs.remove(AppConstant.password);
   }
 
   static Future<String> getAppToken() async {
@@ -52,6 +53,23 @@ class Utils {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(AppConstant.accessToken, token.accessToken);
     prefs.setInt(AppConstant.userId, token.userId);
+  }
+
+  static Future<void> saveString(String value, String key) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString(key, value);
+  }
+
+  static Future<String> getLoginParam() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final u = prefs.getString(AppConstant.username);
+    final p = prefs.getString(AppConstant.password);
+    return '$u:$p';
+  }
+
+  static Future<String> getString(String key) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString(key);
   }
 
   static void logout() {
@@ -157,3 +175,15 @@ class Utils {
   );
 }
 
+extension DateUtil on Utils {
+  static DateTime convertStringToDateTime({String dateInString, String format}) {
+    DateFormat dateFormat = DateFormat(format);
+    try {
+      final date = dateFormat.parse(dateInString);
+      return date;
+    } catch (e) {
+      logger.info(e.toString());
+      return null;
+    }
+  }
+}

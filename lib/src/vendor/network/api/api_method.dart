@@ -93,14 +93,14 @@ extension ApiMethod on API {
 
     String basicAuth =
         'Basic ' + base64Encode(utf8.encode('$username:$password'));
-    logger.info(basicAuth);
+    logger.info(Uri.parse(Global.shared.endpoint(ApiPath.login.path)));
 
     try {
       logger.info(Uri.parse(Global.shared.endpoint(ApiPath.login.path)));
       var response = await http.post(
         Uri.parse(Global.shared.endpoint(ApiPath.login.path)),
         headers: {'authorization': basicAuth},
-
+        body: Global.shared.datapost
       );
 
       var responseJson = _processResponse(response);
