@@ -1,6 +1,5 @@
 import 'package:nukeviet/src/include/base.dart';
 import 'package:nukeviet/src/modules/search_query.dart';
-import 'package:nukeviet/src/vendor/commons/utils.dart';
 import 'package:nukeviet/src/vendor/network/response/mapping/nguoitiemchung.dart';
 import 'package:rxdart/rxdart.dart';
 
