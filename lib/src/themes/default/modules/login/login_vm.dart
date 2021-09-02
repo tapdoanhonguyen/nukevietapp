@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nukeviet/src/include/base.dart';
+import 'package:nukeviet/src/include/constants.dart';
 import 'package:nukeviet/src/vendor/commons/utils.dart';
 import 'package:nukeviet/src/vendor/network/global.dart';
 import 'package:nukeviet/src/vendor/network/response/mapping/user.dart';
@@ -29,6 +30,9 @@ class LoginViewModel extends BaseViewModel {
 
   Future<User> getUser(int userId) async {
     logger.info(userId);
+    Global.shared.timestamp = Timestamp.fromDate(DateTime.now()).seconds;
+    Global.shared.setDataPost( 'users', 'UsersInfo');
+    AppConstant.userId = userId.toString();
     return api.getUser(userId: userId);
   }
 }

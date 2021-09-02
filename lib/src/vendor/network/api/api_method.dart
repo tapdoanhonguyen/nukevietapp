@@ -32,20 +32,32 @@ extension ApiMethod on API {
 
     var accessToken = await Utils.getAppToken();
     //String params ='';
-    Map<String, String> headers = {};
+    logger.info(AppConstant.userId);
+    String userid = AppConstant.userId;
+    String basicAuth = base64Encode(utf8.encode('$userid:$accessToken'));
+    Map<String, String> headers = { Global.shared.timestamp.toString() :  basicAuth};
+
     if (accessToken.isNotEmpty) {
+
       headers[HttpHeaders.authorizationHeader] = 'Bearer $accessToken';
     }
 
     String endpoint = Global.shared.endpoint(api.path);
     if (params.isNotEmpty) {
-      String queryString = ApiMethod.convertMapToQueryParameter(params);
-      endpoint += '?$queryString';
+      //String queryString = ApiMethod.convertMapToQueryParameter(params);
+      //endpoint += '?$queryString';
     }
 
     try {
-      var response = await http.get(Uri.parse(endpoint), headers: headers);
+      logger.info(basicAuth);
+      var response = await http.post(
+          Uri.parse(Global.shared.endpoint(ApiPath.login.path)),
+          headers: { Global.shared.timestamp.toString() : basicAuth},
+          body: Global.shared.datapost
+      );
       var jsonData = processResponse(response);
+      logger.info(jsonData);
+      logger.info(Global.shared.datapost);
       return jsonData;
     } catch (e) {
       throw e;
