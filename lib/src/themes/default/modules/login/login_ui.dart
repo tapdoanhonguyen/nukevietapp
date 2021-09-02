@@ -49,9 +49,11 @@ class _LoginPage extends State<LoginPage> {
     Toast.showLoading();
 
     viewModel.login().then((value) {
-      logger.info(value);
+      logger.info(value.userId);
+
       Utils.saveToken(value);
       getUser(value.userId);
+
     }).catchError(
           (e) => Toast.show(text: r'Tên đăng nhập hoặc mật khẩu không đúng'),
     );
@@ -115,12 +117,7 @@ class _LoginPage extends State<LoginPage> {
 
     if (server != null && server.title != serverInfo.title) {
       setState(() => serverInfo = server);
-      int timestamp = 0;
       Global.shared.setServer(server);
-      Global.shared.server.module = 'users';
-      Global.shared.server.action = 'Login';
-      Global.shared.lang = 'vi';
-      Global.shared.setDataPost(timestamp,'users','Login');
     }
   }
 

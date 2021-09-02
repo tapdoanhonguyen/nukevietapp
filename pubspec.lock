@@ -64,6 +64,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
+  cloud_firestore:
+    dependency: "direct main"
+    description:
+      name: cloud_firestore
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.5.1"
+  cloud_firestore_platform_interface:
+    dependency: transitive
+    description:
+      name: cloud_firestore_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.4.1"
+  cloud_firestore_web:
+    dependency: transitive
+    description:
+      name: cloud_firestore_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.4.1"
   collection:
     dependency: transitive
     description:
@@ -78,6 +99,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
+  crypt:
+    dependency: "direct main"
+    description:
+      name: crypt
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.1"
   crypto:
     dependency: transitive
     description:
@@ -113,6 +141,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.1.2"
+  firebase_core:
+    dependency: transitive
+    description:
+      name: firebase_core
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.6.0"
+  firebase_core_platform_interface:
+    dependency: transitive
+    description:
+      name: firebase_core_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.1"
+  firebase_core_web:
+    dependency: transitive
+    description:
+      name: firebase_core_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   flare_flutter:
     dependency: transitive
     description:
@@ -247,13 +296,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.0"
-  password_hash:
-    dependency: "direct main"
-    description:
-      name: password_hash
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   path:
     dependency: transitive
     description:

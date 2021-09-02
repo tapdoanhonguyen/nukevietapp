@@ -1,10 +1,10 @@
 import 'dart:convert';
 
+import 'package:crypt/crypt.dart';
 import 'package:nukeviet/src/modules/server_info.dart';
-import 'package:password_hash/pbkdf2.dart';
 import 'package:rxdart/rxdart.dart';
 import 'response/mapping/user.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 class Global {
   static String _schema = 'https';
   static String _baseUrl = r'thachban.vaccom.vn:8080/rest/v1/';
@@ -25,9 +25,8 @@ class Global {
     _baseUrl = info.baseUrl;
     _schema = info.protocol;
   }
-  setDataPost(int timestamp, String module, String action){
-    var generator = new PBKDF2();
-    var hashsecret = generator.generateKey(server.apisec + '_' + timestamp.toString(), Global.shared.passDefault,0,0);
+  setDataPost( String module, String action){
+    final  hashsecret = Crypt.sha512(server.apisec + '_' + timestamp.toString());
     //Global.shared.datapost = jsonEncode({'apikey' : server.apikey});
     Global.shared.datapost = {
       'apikey' : server.apikey,
@@ -45,6 +44,7 @@ class Global {
   String deviceToken = '';
   String passDefault = '';
   String lang = 'vi';
+  int timestamp = Timestamp.fromDate(DateTime.now()).seconds;
   Map<String,dynamic> datapost ;
 
   final appUser = BehaviorSubject<User>();

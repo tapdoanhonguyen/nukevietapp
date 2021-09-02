@@ -112,23 +112,19 @@ extension ApiMethod on API {
       throw NetworkException();
     }
 
-    String basicAuth =
-        'Basic ' + base64Encode(utf8.encode('$username:$password'));
+    String basicAuth = base64Encode(utf8.encode('$username:$password'));
     logger.info(basicAuth);
 
     try {
-      logger.info(Uri.parse(Global.shared.endpoint(ApiPath.login.path)));
-      int timestamp = 0;
-      Global.shared.setDataPost(timestamp, 'users', 'Login');
-      logger.info(Global.shared.datapost);
+
       var response = await http.post(
         Uri.parse(Global.shared.endpoint(ApiPath.login.path)),
-        headers: { timestamp.toString() : basicAuth},
+        headers: { Global.shared.timestamp.toString() : basicAuth},
         body: Global.shared.datapost
       );
 
       var responseJson = processResponse(response);
-      logger.info(responseJson);
+
       return responseJson;
     } catch (e) {
       throw e;
@@ -139,14 +135,14 @@ extension ApiMethod on API {
   static Future<void> renewToken() async {
     final loginParam = await Utils.getLoginParam();
 
-    String basicAuth = 'Basic ' + base64Encode(utf8.encode(loginParam));
-    logger.info(basicAuth);
+    String basicAuth = base64Encode(utf8.encode(loginParam));
 
     try {
       logger.info(Uri.parse(Global.shared.endpoint(ApiPath.login.path)));
       var response = await http.post(
         Uri.parse(Global.shared.endpoint(ApiPath.login.path)),
-        headers: {'authorization': basicAuth},
+          headers: { Global.shared.timestamp.toString() : basicAuth},
+          body: Global.shared.datapost
       );
 
       var utf8Decode = utf8.decode(response.bodyBytes);
@@ -164,7 +160,6 @@ extension ApiMethod on API {
       case 200:
         var utf8Decode = utf8.decode(response.bodyBytes);
         var responseJson = json.decode(utf8Decode);
-        logger.info(responseJson);
         return responseJson;
         break;
 
@@ -178,7 +173,7 @@ extension ApiMethod on API {
   }
 }
 
-extension VacNetwork on API {
+extension NVNetwork on API {
   /// GET
   static Future<dynamic> getData({String uri}) async {
     final isOnline = await ApiMethod.hasNetwork();
