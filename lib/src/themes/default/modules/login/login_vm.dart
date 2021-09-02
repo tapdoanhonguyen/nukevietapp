@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nukeviet/src/include/base.dart';
+import 'package:nukeviet/src/vendor/commons/utils.dart';
 import 'package:nukeviet/src/vendor/network/global.dart';
 import 'package:nukeviet/src/vendor/network/response/mapping/user.dart';
 import 'package:nukeviet/src/vendor/network/response/mapping/nv_token.dart';
@@ -22,10 +23,12 @@ class LoginViewModel extends BaseViewModel {
   Future<NVToken> login() async {
     Global.shared.timestamp = Timestamp.fromDate(DateTime.now()).seconds;
     Global.shared.setDataPost( 'users', 'Login');
+    logger.info('res 1');
     return api.securityToken(username: username, password: password);
   }
 
   Future<User> getUser(int userId) async {
+    logger.info(userId);
     return api.getUser(userId: userId);
   }
 }

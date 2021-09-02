@@ -1,6 +1,7 @@
 
 
 
+import 'package:nukeviet/src/vendor/commons/utils.dart';
 import 'package:nukeviet/src/vendor/network/response/mapping/newsrow.dart';
 import 'package:nukeviet/src/vendor/network/response/mapping/user.dart';
 import 'package:nukeviet/src/vendor/network/response/mapping/nv_token.dart';
@@ -20,7 +21,8 @@ class RemoteAPI implements API {
         username: username,
         password: password,
       );
-      return NVToken.fromJson(res);
+
+      return NVToken.fromJson(res['message']);
     } catch (e) {
       throw e;
     }
@@ -30,7 +32,9 @@ class RemoteAPI implements API {
     final apiPath = ApiPath.getUser(userId);
     final Map<String, String> param = {};
     try {
+      logger.info('get user');
       var res = await ApiMethod.getData(apiPath, param);
+      logger.info(res);
       return User.fromJson(res);
     } catch (e) {
       throw e;

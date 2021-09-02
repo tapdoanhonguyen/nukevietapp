@@ -50,6 +50,7 @@ class Utils {
   }
 
   static Future<void> saveToken(NVToken token) async {
+    logger.info(token.expiresIn);
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(AppConstant.accessToken, token.accessToken);
     prefs.setInt(AppConstant.userId, token.userId);
@@ -63,8 +64,8 @@ class Utils {
   static Future<String> getLoginParam() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final u = prefs.getString(AppConstant.username);
-    final p = prefs.getString(AppConstant.password);
-    return '$u:$p';
+    final token = prefs.getString(AppConstant.accessToken);
+    return '$u:$token';
   }
 
   static Future<String> getString(String key) async {

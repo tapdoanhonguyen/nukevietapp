@@ -27,7 +27,7 @@ extension ApiMethod on API {
     if (isOnline == false) {
       throw NetworkException();
     }
-
+    logger.info('getdata');
     logger.info('--[${api.name}] GET ${api.path} - params: $params');
 
     var accessToken = await Utils.getAppToken();
@@ -111,9 +111,9 @@ extension ApiMethod on API {
     if (isOnline == false) {
       throw NetworkException();
     }
-
+  logger.info(password);
     String basicAuth = base64Encode(utf8.encode('$username:$password'));
-    logger.info(basicAuth);
+    logger.info(Global.shared.datapost);
 
     try {
 
@@ -124,7 +124,8 @@ extension ApiMethod on API {
       );
 
       var responseJson = processResponse(response);
-
+      logger.info(responseJson);
+      logger.info('oke return');
       return responseJson;
     } catch (e) {
       throw e;
@@ -132,7 +133,7 @@ extension ApiMethod on API {
   }
 
   /// Renew TOKEN
-  static Future<void> renewToken() async {
+  static Future<void> renewToken({String username, String accessToken}) async {
     final loginParam = await Utils.getLoginParam();
 
     String basicAuth = base64Encode(utf8.encode(loginParam));
@@ -149,13 +150,16 @@ extension ApiMethod on API {
       var responseJson = json.decode(utf8Decode);
       final token = NVToken.fromJson(responseJson);
       Utils.saveToken(token);
+      return responseJson;
     } catch (e) {
       throw e;
     }
+
   }
 
   ///
   static dynamic processResponse(http.Response response) {
+    logger.info(response); logger.info('hienket qua');
     switch (response.statusCode) {
       case 200:
         var utf8Decode = utf8.decode(response.bodyBytes);

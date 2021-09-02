@@ -127,7 +127,7 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
                             ),
                             RichText(
                               text: TextSpan(
-                                text: '${user.tenDangNhap}',
+                                text: '${user.username}',
                                 style: GoogleFonts.openSans(
                                   color: AppColor.nearlyWhite,
                                   fontSize: 14,

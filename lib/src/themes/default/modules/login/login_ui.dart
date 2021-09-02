@@ -49,7 +49,8 @@ class _LoginPage extends State<LoginPage> {
     Toast.showLoading();
 
     viewModel.login().then((value) {
-      logger.info(value.userId);
+      logger.info("luu tokem");
+      logger.info(value);
 
       Utils.saveToken(value);
       getUser(value.userId);
