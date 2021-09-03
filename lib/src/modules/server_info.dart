@@ -16,7 +16,7 @@ class ServerInfo {
   static List<ServerInfo> all = [nukeviet];
   static ServerInfo nukeviet = ServerInfo(
       title: r'nukeviet.vn',
-      desc: r'CMS Nukeviet',
+      desc: r'NUKEVIET CMS',
       baseUrl: r'hcm.nukeviet.vn/api.php',
       domainurl: r'https://hcm.nukeviet.vn',
       protocol: 'https',

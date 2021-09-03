@@ -30,7 +30,7 @@ class _LoginPage extends State<LoginPage> {
   final FocusNode _focusNode = FocusNode();
 
   ServerInfo serverInfo = Global.shared.server;
-  final vaccomBanner = Image.asset('assets/images/logo_banner.png');
+  final nukevietBanner = Image.asset('assets/images/logo_banner.png');
 
   @override
   void dispose() {
@@ -196,7 +196,7 @@ class _LoginPage extends State<LoginPage> {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
               gradient: LinearGradient(
-                colors: [Color(0xFF171cc2), Color(0xFFff5200)],
+                colors: [AppColor.main, AppColor.main],
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
               )),
@@ -208,7 +208,7 @@ class _LoginPage extends State<LoginPage> {
                 ),
                 child: CachedNetworkImage(
                   imageUrl: serverInfo.logoBanner,
-                  errorWidget: (_, e, o) => vaccomBanner,
+                  errorWidget: (_, e, o) => nukevietBanner,
                 ),
               ),
               Container(
