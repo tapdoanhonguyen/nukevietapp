@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nukeviet/src/themes/default/color.dart';
 
-class VacButton extends StatelessWidget {
+class NvButton extends StatelessWidget {
   final Function onTap;
   final String title;
   final double radius;
@@ -13,7 +13,7 @@ class VacButton extends StatelessWidget {
   final Color color;
   final IconData icon;
 
-  const VacButton({
+  const NvButton({
     @required this.onTap,
     this.title = '',
     this.radius = 4,
