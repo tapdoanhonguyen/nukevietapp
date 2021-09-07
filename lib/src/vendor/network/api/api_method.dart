@@ -42,7 +42,7 @@ extension ApiMethod on API {
       headers[HttpHeaders.authorizationHeader] = 'Bearer $accessToken';
     }
 
-    String endpoint = Global.shared.endpoint(api.path);
+
     if (params.isNotEmpty) {
       //String queryString = ApiMethod.convertMapToQueryParameter(params);
       //endpoint += '?$queryString';
