@@ -163,6 +163,7 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
       Container(),
       Container(),
       Container(),
+      Container(),
     ];
 
     final drawerWidget = Drawer(
@@ -287,7 +288,7 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
         ),
         body: tabPage[_selectedIndex],
         bottomNavigationBar: BottomNavigationBar(
-          items: VBottomBar.items(),
+          items: NBottomBar.items(),
           currentIndex: _selectedIndex,
           unselectedItemColor: Colors.grey,
           selectedItemColor: AppColor.main,
@@ -316,7 +317,7 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
 
 
 
-class VBottomBar {
+class NBottomBar {
   static List<BottomNavigationBarItem> items() {
     final userLoggedIn = Global.shared.currentUser;
     List<BottomNavigationBarItem> items = [
