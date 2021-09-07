@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nukeviet/src/include/constants.dart';
 import 'package:nukeviet/src/include/router.dart';
+import 'package:nukeviet/src/modules/login_vm.dart';
 import 'package:nukeviet/src/modules/server_info.dart';
 import 'package:nukeviet/src/themes/default/color.dart';
 import 'package:nukeviet/src/vendor/commons/toast.dart';
@@ -15,7 +16,6 @@ import 'package:nukeviet/src/vendor/components/password_input.dart';
 import 'package:get/get.dart';
 import 'package:nukeviet/src/vendor/network/global.dart';
 
-import 'login_vm.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage();
