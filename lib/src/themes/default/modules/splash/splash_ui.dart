@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nukeviet/src/include/router.dart';
-import 'package:nukeviet/src/themes/default/modules/login/login_vm.dart';
+import 'package:nukeviet/src/modules/login_vm.dart';
 import 'package:nukeviet/src/vendor/commons/utils.dart';
 import 'package:nukeviet/src/vendor/network/global.dart';
 
