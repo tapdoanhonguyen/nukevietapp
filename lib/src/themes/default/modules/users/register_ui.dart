@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:nukeviet/src/modules/users/register_injection_controller.dart';
+import 'package:nukeviet/src/modules/users/register_controller.dart';
 import 'package:nukeviet/src/themes/default/color.dart';
 import 'package:nukeviet/src/themes/default/custom_date_input_ui.dart';
 import 'package:nukeviet/src/themes/default/custom_picker_input_ui.dart';
@@ -9,8 +9,8 @@ import 'package:nukeviet/src/vendor/components/custom_form_input.dart';
 import 'package:nukeviet/src/vendor/components/nv_button.dart';
 
 class Register extends StatelessWidget {
-  final RegisterInjectionController controller =
-  Get.put(RegisterInjectionController());
+  final RegisterController controller =
+  Get.put(RegisterController());
 
   Widget rowInput(List<Widget> inputList) {
     return Container(

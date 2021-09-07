@@ -22,7 +22,20 @@ class User {
   String last_name;
   int active;
   int quanTriHeThong;
+  int role = 0;
 
+  NRoles get nRole {
+    switch (role) {
+      case 1: return NRoles.ADMIN;
+      case 2: return NRoles.SADMIN;
+      case 3: return NRoles.GOLDADMIN;
+      default: return NRoles.USER;
+    }
+  }
+
+  String get roleName {
+    return nRole.toString().split('.').last;
+  }
   factory User.fromJson(Map<String, dynamic> json) => User(
     id: json["message"]["userid"],
       username: json["message"]["username"],
@@ -37,4 +50,13 @@ class User {
   );
 
   Map<String, dynamic> params() => {};
+}
+
+
+
+enum NRoles {
+  USER,
+  ADMIN,
+  SADMIN,
+  GOLDADMIN,
 }
