@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nukeviet/src/modules/menu_item.dart';
+import '../../../../modules/menu/menu_item.dart';
 import 'package:nukeviet/src/themes/default/color.dart';
 
 class MainItemView extends StatelessWidget {

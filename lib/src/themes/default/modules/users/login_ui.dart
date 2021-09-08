@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nukeviet/src/include/constants.dart';
 import 'package:nukeviet/src/include/router.dart';
-import 'package:nukeviet/src/modules/login_vm.dart';
+import 'package:nukeviet/src/modules/users/login_vm.dart';
 import 'package:nukeviet/src/modules/server_info.dart';
 import 'package:nukeviet/src/themes/default/color.dart';
 import 'package:nukeviet/src/vendor/commons/toast.dart';
@@ -71,7 +71,6 @@ class _LoginPage extends State<LoginPage> {
   }
 
   void onRegister() {
-    Toast.show(text: 'register'.tr);
     Get.offAndToNamed(GetRouter.register);
   }
 

@@ -368,76 +368,76 @@ class DrawerItemData {
 
   DrawerItemData({this.title, this.onTap, this.item});
 
-  static DrawerItemData checkIn = DrawerItemData(
-    title: r'Checkin y tế tại điểm tiêm chủng',
-    item: DrawerItem.checkIn,
+  static DrawerItemData home = DrawerItemData(
+    title: r'Trang chủ',
+    item: DrawerItem.home,
   );
 
-  static DrawerItemData xemThongTinLichSu = DrawerItemData(
-    title: r'Xem thông tin lịch sử tiêm chủng',
-    item: DrawerItem.xemThongTinLichSu,
+  static DrawerItemData news = DrawerItemData(
+    title: r'Tin Tức',
+    item: DrawerItem.news,
   );
 
-  static DrawerItemData xacNhanLichHen = DrawerItemData(
-    title: r'Xác nhận lịch hẹn tiêm',
-    item: DrawerItem.xacNhanLichHen,
+  static DrawerItemData about = DrawerItemData(
+    title: r'Giới thiệu',
+    item: DrawerItem.about,
   );
 
-  static DrawerItemData capNhatDienBienSauTiem = DrawerItemData(
-    title: r'Cập nhật diễn biến sau tiêm',
-    item: DrawerItem.capNhatDienBienSauTiem,
+  static DrawerItemData member = DrawerItemData(
+    title: r'Thành viên',
+    item: DrawerItem.member,
   );
 
-  static DrawerItemData nhapDoiTuongTiemMoi = DrawerItemData(
-    title: r'Nhập đăng kí đối tượng tiêm mới',
-    item: DrawerItem.nhapDoiTuongTiemMoi,
+  static DrawerItemData votting = DrawerItemData(
+    title: r'Thăm dò ý kiên',
+    item: DrawerItem.votting,
   );
 
-  static DrawerItemData duyetDoiTuongTiemMoi = DrawerItemData(
-    title: r'Duyệt danh sách đối tượng tiêm mới',
-    item: DrawerItem.duyetDoiTuongTiemMoi,
+  static DrawerItemData contact = DrawerItemData(
+    title: r'Liên hệ',
+    item: DrawerItem.contact,
   );
 
-  static DrawerItemData traCuuDoiTuongChinhThuc = DrawerItemData(
-    title: r'Tra cứu danh sách đối tượng chính thức',
-    item: DrawerItem.traCuuDoiTuongChinhThuc,
+  static DrawerItemData sendnew = DrawerItemData(
+    title: r'Gửi bài viết',
+    item: DrawerItem.sendnew,
   );
 
-  static DrawerItemData xacNhanDanhSachGoiTiem = DrawerItemData(
-    title: r'Xác nhận danh sách gọi tiêm',
-    item: DrawerItem.xacNhanDanhSachGoiTiem,
+  static DrawerItemData adminpage = DrawerItemData(
+    title: r'Quản trị hệ thống',
+    item: DrawerItem.adminpage,
   );
 
-  static DrawerItemData quanLyDanhSachCheckIn = DrawerItemData(
-    title: r'Quản lý danh sách checkin',
-    item: DrawerItem.quanLyDanhSachCheckIn,
+  static DrawerItemData config = DrawerItemData(
+    title: r'Cấu hình hệ thống',
+    item: DrawerItem.config,
   );
 
-  static DrawerItemData nhapKetQuaSauTiem = DrawerItemData(
-    title: r'Nhập kết quả sau tiêm',
-    item: DrawerItem.nhapKetQuaSauTiem,
+  static DrawerItemData clearcache = DrawerItemData(
+    title: r'Xóa cache hệ thống',
+    item: DrawerItem.clearcache,
   );
 
   static List<DrawerItemData> items() {
     List<DrawerItemData> users = [
-      checkIn,
-      xemThongTinLichSu,
-      xacNhanLichHen,
-      capNhatDienBienSauTiem,
+      home,
+      news,
+      about,
+      votting,
+      contact,
+      sendnew,
     ];
 
-    List<DrawerItemData> canBoDiaBan = [
-      nhapDoiTuongTiemMoi,
-      duyetDoiTuongTiemMoi,
-      traCuuDoiTuongChinhThuc,
-      xacNhanDanhSachGoiTiem,
+    List<DrawerItemData> admin = [
+      adminpage,
     ];
 
-    List<DrawerItemData> canBoYTe = [
-      quanLyDanhSachCheckIn,
-      nhapKetQuaSauTiem,
+    List<DrawerItemData> sadmin = [
+      clearcache,
     ];
-
+    List<DrawerItemData> goldadmin = [
+      config,
+    ];
     List<DrawerItemData> items = users;
 
     final userLoggedIn = Global.shared.currentUser;
@@ -445,11 +445,13 @@ class DrawerItemData {
       case NRoles.USER:
         break;
       case NRoles.ADMIN:
-        items = users + canBoDiaBan;
+        items = users + admin;
         break;
       case NRoles.SADMIN:
+        items = users + admin + sadmin;
+            break;
       case NRoles.GOLDADMIN:
-        items = users + canBoDiaBan + canBoYTe;
+        items = users + admin + sadmin + goldadmin;
     }
 
     return items;
@@ -457,14 +459,14 @@ class DrawerItemData {
 }
 
 enum DrawerItem {
-  checkIn,
-  xemThongTinLichSu,
-  xacNhanLichHen,
-  capNhatDienBienSauTiem,
-  nhapDoiTuongTiemMoi,
-  duyetDoiTuongTiemMoi,
-  traCuuDoiTuongChinhThuc,
-  xacNhanDanhSachGoiTiem,
-  quanLyDanhSachCheckIn,
-  nhapKetQuaSauTiem
+  home,
+  news,
+  about,
+  member,
+  votting,
+  contact,
+  sendnew,
+  adminpage,
+  clearcache,
+  config
 }

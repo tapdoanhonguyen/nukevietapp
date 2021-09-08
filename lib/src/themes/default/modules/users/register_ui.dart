@@ -13,7 +13,6 @@ import 'package:nukeviet/src/vendor/components/password_input.dart';
 class Register extends StatelessWidget {
   final RegisterController controller =
   Get.put(RegisterController());
-  final FocusNode _focusNode = FocusNode();
   Widget rowInput(List<Widget> inputList) {
     return Container(
       margin: EdgeInsets.only(bottom: 8),
@@ -77,12 +76,10 @@ class Register extends StatelessWidget {
                 ]),
 
                 PasswordInput(
-                  focusNode: _focusNode,
                   controller: controller.passwordCtrl,
                   label: 'Mật khẩu'.tr,
                 ),
                 PasswordInput(
-                  focusNode: _focusNode,
                   controller: controller.passwordveryCtrl,
                   label: 'Nhập lại mật khẩu'.tr,
                 ),
