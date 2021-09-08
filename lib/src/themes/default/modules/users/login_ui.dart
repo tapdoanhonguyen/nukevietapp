@@ -72,6 +72,7 @@ class _LoginPage extends State<LoginPage> {
 
   void onRegister() {
     Toast.show(text: 'register'.tr);
+    Get.offAndToNamed(GetRouter.register);
   }
 
   Future<List<ServerInfo>> getServerList() async {
