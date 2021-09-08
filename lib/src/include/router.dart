@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nukeviet/src/themes/default/modules/main/main_ui.dart';
+import 'package:nukeviet/src/themes/default/modules/news/NewList.dart';
 import 'package:nukeviet/src/themes/default/modules/splash/splash_ui.dart';
 import 'package:nukeviet/src/themes/default/modules/users/login_ui.dart';
 import 'package:nukeviet/src/themes/default/modules/users/register_ui.dart';
@@ -11,6 +12,7 @@ class GetRouter {
   static const root = '/';
   static const login = '/login';
   static const main = '/main';
+  static const news = '/news';
   static const injector = '/injector';
   static const newInjector = '/new_injector';
   static const about = '/new_injector';
@@ -28,6 +30,7 @@ class GetRouter {
       ),
       GetPage(name: main, page: () => MainPage()),
       GetPage(name: register, page: () => Register()),
+      GetPage(name: news, page: () => NewListPage()),
       //GetPage(name: about, page: () => AboutPage()),
       //GetPage(name: users, page: () => AboutPage()),
       //GetPage(name: contact, page: () => ContactPage()),

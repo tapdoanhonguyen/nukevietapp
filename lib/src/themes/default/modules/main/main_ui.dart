@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:nukeviet/src/include/main_key.dart';
 
 import 'package:get/get.dart';
+import 'package:nukeviet/src/include/router.dart';
 import 'package:nukeviet/src/modules/dashboard_item.dart';
 import 'package:nukeviet/src/modules/main_vm.dart';
 import 'package:nukeviet/src/themes/default/color.dart';
@@ -54,7 +55,15 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
   void tapOnDrawerItem(DrawerItem item) {
     mainKey.currentState.openEndDrawer();
     switch (item) {
-
+      case DrawerItem.home:
+        Get.toNamed(GetRouter.main);
+        break;
+      case DrawerItem.news:
+        Get.toNamed(GetRouter.news);
+        break;
+      case DrawerItem.member:
+        Get.toNamed(GetRouter.news);
+        break;
       default:
         final title = item.toString().split('.').last;
         Get.to(() => SamplePage(title: title));

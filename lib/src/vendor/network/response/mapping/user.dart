@@ -1,4 +1,3 @@
-import 'dart:math';
 
 class User {
   User({
@@ -35,9 +34,9 @@ class User {
 
   NRoles get nRole {
     switch (role) {
-      case 1: return NRoles.ADMIN;
+      case 1: return NRoles.GOLDADMIN;
       case 2: return NRoles.SADMIN;
-      case 3: return NRoles.GOLDADMIN;
+      case 3: return NRoles.ADMIN;
       default: return NRoles.USER;
     }
   }
