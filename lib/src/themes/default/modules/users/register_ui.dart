@@ -5,6 +5,7 @@ import 'package:nukeviet/src/modules/users/register_controller.dart';
 import 'package:nukeviet/src/themes/default/color.dart';
 import 'package:nukeviet/src/themes/default/custom_date_input_ui.dart';
 import 'package:nukeviet/src/themes/default/custom_picker_input_ui.dart';
+import 'package:nukeviet/src/vendor/commons/toast.dart';
 import 'package:nukeviet/src/vendor/commons/utils.dart';
 import 'package:nukeviet/src/vendor/components/custom_app_bar.dart';
 import 'package:nukeviet/src/vendor/components/custom_form_input.dart';
@@ -88,14 +89,7 @@ class Register extends StatelessWidget {
                   focusNode: _focusNode,
                   controller: controller.passwordveryCtrl,
                   label: 'Nhập lại mật khẩu'.tr,
-                    onChanged: (val){
-                      logger.info(val);
-                      if(val.isEmpty)
-                        return 'Empty';
-                      if(val != controller.passwordCtrl.text)
-                        return 'Not Match';
-                      return null;
-                    },
+                  onSubmitted: controller.checkPass(),
                 ),
 
                 Container(
