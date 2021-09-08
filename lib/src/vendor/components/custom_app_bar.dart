@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nukeviet/src/include/constants.dart';
+import 'package:nukeviet/src/include/router.dart';
 import 'package:nukeviet/src/themes/default/styles.dart';
 
 class GradientAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -37,7 +38,7 @@ class GradientAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           AppBar(
             backgroundColor: Colors.transparent,
-            leading: canBack ? BackButton(onPressed: () => Get.back()) : null,
+            leading: BackButton(onPressed: () => Get.offAndToNamed(GetRouter.login)),
             title: Text(
               title,
               style: AppStyle.appBarTitle,

@@ -12,35 +12,22 @@ class RegisterController extends GetxController with BaseViewModel {
     PickerItem(name: 'Không xác định', id: 2),
   ];
 
-  TextEditingController nameCtrl = TextEditingController();
+  TextEditingController firstnameCtrl = TextEditingController();
+  TextEditingController lastnameCtrl = TextEditingController();
   PickerController genderCtrl = PickerController();
   DatePickerController dobCtrl = DatePickerController();
-  TextEditingController idCtrl = TextEditingController();
-  TextEditingController bhytCtrl = TextEditingController();
-  TextEditingController phoneCtrl = TextEditingController();
   TextEditingController emailCtrl = TextEditingController();
-  PickerController cityCtrl = PickerController();
-  PickerController districtCtrl = PickerController();
-  PickerController wardCtrl = PickerController();
-  TextEditingController addressCtrl = TextEditingController();
-  PickerController groupCtrl = PickerController();
-  TextEditingController unitCtrl = TextEditingController();
-  PickerController csytCtrl = PickerController();
-  PickerController localCtrl = PickerController();
-  PickerController danTocCtrl = PickerController();
-  PickerController quocTichCtrl = PickerController();
-  TextEditingController tieuSuCtrl = TextEditingController();
-  TextEditingController benhLyCtrl = TextEditingController();
-  TextEditingController thuocCtrl = TextEditingController();
-  DatePickerController ngayDKCtrl = DatePickerController();
-  TextEditingController luuYCtrl = TextEditingController();
+  TextEditingController passwordCtrl = TextEditingController();
+  TextEditingController passwordveryCtrl = TextEditingController();
+
 
   @override
   onInit() {
     super.onInit();
     genderCtrl.listData = gender;
+    passwordCtrl.text = r'';
     Future.wait([
-
+      CheckPass();
     ]);
   }
 
@@ -49,36 +36,17 @@ class RegisterController extends GetxController with BaseViewModel {
   ///
   register() {
     Map<String, dynamic> params = {
-      "HoVaTen": nameCtrl.text,
-      "NgaySinh": dobCtrl.text,
-      "GioiTinh": genderCtrl.pickedID,
-      "CMTCCCD": idCtrl.text,
-      "NgheNghiep": "",
-      "NhomDoiTuong": groupCtrl.pickedID,
-      "DonViCongTac": unitCtrl.text,
-      "SoDienThoai": phoneCtrl.text,
+      "firstname": firstnameCtrl.text,
+      "lastname": lastnameCtrl.text,
+      "birthday": dobCtrl.text,
+      "gender": genderCtrl.pickedID,
       "Email": emailCtrl.text,
-      "MaSoBHXH": "",
-      "SoTheBHYT": bhytCtrl.text,
-      "DiaChiNoiO": addressCtrl.text,
-      "TinhThanh_Ma": cityCtrl.pickedCode,
-      "TinhThanh_Ten": cityCtrl.pickedName,
-      "QuanHuyen_Ma": districtCtrl.pickedCode,
-      "QuanHuyen_Ten": districtCtrl.pickedName,
-      "PhuongXa_Ma": wardCtrl.pickedCode,
-      "PhuongXa_Ten": wardCtrl.pickedName,
-      "DiaBanCoSo_ID": localCtrl.pickedID,
-      "CoSoYTe_Ma": csytCtrl.pickedID,
-      "CoSoYTe_Ten": csytCtrl.pickedName,
-      "DanToc_Ma": danTocCtrl.pickedID,
-      "QuocTich_Ma": quocTichCtrl.pickedID,
-      "TienSuDiUng": tieuSuCtrl.text,
-      "CacBenhLyDangMac": benhLyCtrl.text,
-      "CacThuocDangDung": thuocCtrl.text,
-      "GhiChu": luuYCtrl.text,
-      "NgayDangKi": ngayDKCtrl.text,
       "TinhTrangDangKi": 1
     };
     logger.info(params);
+  }
+
+  CheckPass() {
+    return RegisterController
   }
 }
