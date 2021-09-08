@@ -4,7 +4,6 @@ import 'package:nukeviet/src/include/base.dart';
 import 'package:nukeviet/src/vendor/commons/toast.dart';
 import 'package:nukeviet/src/vendor/commons/utils.dart';
 import 'package:nukeviet/src/vendor/components/custom_date_input/custom_date_input_controller.dart';
-import 'package:nukeviet/src/vendor/components/custom_form_input.dart';
 import 'package:nukeviet/src/vendor/components/custom_picker_input/custom_picker_input_controller.dart';
 class RegisterController extends GetxController with BaseViewModel {
   var name = ''.obs;

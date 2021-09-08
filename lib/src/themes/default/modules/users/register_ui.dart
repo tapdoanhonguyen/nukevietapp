@@ -5,8 +5,6 @@ import 'package:nukeviet/src/modules/users/register_controller.dart';
 import 'package:nukeviet/src/themes/default/color.dart';
 import 'package:nukeviet/src/themes/default/custom_date_input_ui.dart';
 import 'package:nukeviet/src/themes/default/custom_picker_input_ui.dart';
-import 'package:nukeviet/src/vendor/commons/toast.dart';
-import 'package:nukeviet/src/vendor/commons/utils.dart';
 import 'package:nukeviet/src/vendor/components/custom_app_bar.dart';
 import 'package:nukeviet/src/vendor/components/custom_form_input.dart';
 import 'package:nukeviet/src/vendor/components/nv_button.dart';
@@ -16,8 +14,6 @@ class Register extends StatelessWidget {
   final RegisterController controller =
   Get.put(RegisterController());
   final FocusNode _focusNode = FocusNode();
-  var _usernameController = TextEditingController();
-  String _usernameError;
   Widget rowInput(List<Widget> inputList) {
     return Container(
       margin: EdgeInsets.only(bottom: 8),
