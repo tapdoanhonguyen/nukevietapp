@@ -51,14 +51,4 @@ class RegisterController extends GetxController with BaseViewModel {
     }
   }
 
-   checkPass() {
-     {
-       logger.info(passwordveryCtrl.text);
-       if(passwordveryCtrl.text.isEmpty)
-         return 'Empty';
-       if(passwordveryCtrl.text != passwordCtrl.text)
-         Toast.show(text: r'Vui lòng nhập đủ thông tin đăng nhập');
-       return null;
-     }
-  }
 }

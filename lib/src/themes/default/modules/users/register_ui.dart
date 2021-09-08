@@ -85,7 +85,6 @@ class Register extends StatelessWidget {
                   focusNode: _focusNode,
                   controller: controller.passwordveryCtrl,
                   label: 'Nhập lại mật khẩu'.tr,
-                  onSubmitted: controller.checkPass(),
                 ),
 
                 Container(

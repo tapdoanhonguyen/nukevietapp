@@ -12,7 +12,6 @@ class PasswordInput extends StatefulWidget {
   final Stream<bool> invalid;
   final ValueChanged<String> onChanged;
   final TextInputType keyboardType;
-  final Function validator;
   final TextInputAction textInputAction;
   final ValueChanged<String> onSubmitted;
   final FocusNode focusNode;
@@ -30,7 +29,6 @@ class PasswordInput extends StatefulWidget {
     this.focusNode,
     this.onSubmitted,
     this.keyboardType = TextInputType.text,
-    this.validator,
   });
 
   @override
