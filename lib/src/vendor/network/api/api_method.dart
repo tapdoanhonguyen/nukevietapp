@@ -125,7 +125,7 @@ extension ApiMethod on API {
     }
   logger.info(password);
     String basicAuth = base64Encode(utf8.encode('$username:$password'));
-    logger.info(Global.shared.datapost);
+    logger.info(basicAuth);
 
     try {
 

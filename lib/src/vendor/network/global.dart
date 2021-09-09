@@ -1,13 +1,13 @@
 
-
 import 'package:crypt/crypt.dart';
 import 'package:nukeviet/src/modules/server_info.dart';
 import 'package:rxdart/rxdart.dart';
 import 'response/mapping/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:crypto/crypto.dart';
 class Global {
   static String _schema = 'https';
-  static String _baseUrl = r'thachban.vaccom.vn:8080/rest/v1/';
+  static String _baseUrl = r'hcm.nukeviet.vn/api.php';
 
   Global() {
     setServer(_serverInfo);
@@ -27,6 +27,7 @@ class Global {
   }
   setDataPost( String module, String action){
     final  hashsecret = Crypt.sha512(server.apisec + '_' + timestamp.toString());
+
     //Global.shared.datapost = jsonEncode({'apikey' : server.apikey});
     Global.shared.datapost = {
       'apikey' : server.apikey,
