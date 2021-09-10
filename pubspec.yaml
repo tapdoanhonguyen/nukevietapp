@@ -45,10 +45,10 @@ dependencies:
   uuid:
   shared_preferences:
   pull_to_refresh:
-  cloud_firestore:
   crypt:
   encrypt: ^5.0.1
-  # Cloud Message Firebase
+
+# Cloud Message Firebase
 #  firebase_core: "^0.7.0"
 #  firebase_messaging: "^8.0.0-dev.15"
 

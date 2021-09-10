@@ -3,8 +3,6 @@ import 'package:crypt/crypt.dart';
 import 'package:nukeviet/src/modules/server_info.dart';
 import 'package:rxdart/rxdart.dart';
 import 'response/mapping/user.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:crypto/crypto.dart';
 class Global {
   static String _schema = 'https';
   static String _baseUrl = r'hcm.nukeviet.vn/api.php';
@@ -45,7 +43,7 @@ class Global {
   String deviceToken = '';
   String passDefault = '';
   String lang = 'vi';
-  int timestamp = Timestamp.fromDate(DateTime.now()).seconds;
+  int timestamp = DateTime.now().microsecondsSinceEpoch+20000;
   Map<String,dynamic> datapost ;
 
   final appUser = BehaviorSubject<User>();

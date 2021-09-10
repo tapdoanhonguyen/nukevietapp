@@ -123,12 +123,9 @@ extension ApiMethod on API {
     if (isOnline == false) {
       throw NetworkException();
     }
-  logger.info(password);
     String basicAuth = base64Encode(utf8.encode('$username:$password'));
-    logger.info(basicAuth);
-
     try {
-
+     // Global.shared.timestamp = DateTime.now().microsecondsSinceEpoch+20000;
       var response = await http.post(
         Uri.parse(Global.shared.endpoint(ApiPath.login.path)),
         headers: { Global.shared.timestamp.toString() : basicAuth},
